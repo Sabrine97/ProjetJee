@@ -6,11 +6,11 @@ import com.fr.projetjee.service.model.Article;
 
 public interface IArticleService {
     
-    public void createArticle(Article article);
+    public void addArticle(Article article);
 
-    public void updateArticle(Article article);
+    public void updateArticle(Article article, Article modifiedArticle);
 
-    public void deleteArticle(int id);
+    public void removeArticle(int id);
 
     public List<Article> findArticleByName(String name);
 

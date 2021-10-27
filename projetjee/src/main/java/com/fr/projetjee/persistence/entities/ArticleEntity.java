@@ -1,10 +1,19 @@
-package com.fr.projetjee.service.model;
+package com.fr.projetjee.persistence.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import com.fr.projetjee.persistence.repository.ArticleRepository;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-public class Article {
+import com.fr.projetjee.persistence.repository.ArticleRepository;
+import com.fr.projetjee.service.model.Article;
+
+@Entity
+public class ArticleEntity implements Serializable{
+    @Id
+    @GeneratedValue
     private int id;
 
     private String nom;
@@ -45,8 +54,9 @@ public class Article {
         this.fabDate = fabDate;
     }
 
-    public ArticleRepository map() {
-        return (ArticleRepository) this;
+    public Article convertToDto(ArticleRepository articleRepository) {
+        return (Article) articleRepository;
     }
+
 
 }
