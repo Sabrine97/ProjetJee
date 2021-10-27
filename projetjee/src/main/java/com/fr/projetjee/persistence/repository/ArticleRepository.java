@@ -13,7 +13,7 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, Integer>
 
     public List<ArticleEntity> findArticleByName(String name);
 
-    public List<ArticleEntity> findAllArticle();
+    public List<ArticleEntity> findAllArticles();
 
     public ArticleEntity addArticle(ArticleEntity article);
 

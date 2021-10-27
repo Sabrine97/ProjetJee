@@ -1,6 +1,6 @@
 package com.fr.projetjee.service.impl;
 
-import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,9 +15,6 @@ import org.springframework.stereotype.Service;
 public class ArticleServiceImpl implements IArticleService{
 
     @Autowired
-    private Article article;
-
-    @Autowired
     private ArticleRepository articleRepository;
 
     @Override
@@ -27,9 +24,13 @@ public class ArticleServiceImpl implements IArticleService{
     }
 
     @Override
-    public void updateArticle(Article article) {
-        // TODO Auto-generated method stub
-        
+    public void updateArticle(Article article, Article modifiedArticle) {
+        final Article art = this.findArticleById(article.getId());
+		art.setNom(modifiedArticle.getNom());
+		art.setFabDate(modifiedArticle.getFabDate());
+		art.setExpDate(modifiedArticle.getExpDate());
+        ArticleEntity articleEntity = convertToEntity(article);
+		this.articleRepository.save(articleEntity);        
     }
 
     @Override
@@ -39,8 +40,12 @@ public class ArticleServiceImpl implements IArticleService{
 
     @Override
     public List<Article> findArticleByName(String name) {
-        // TODO Auto-generated method stub
-        return null;
+        List<ArticleEntity> articlesEntities = this.articleRepository.findArticleByName(name);
+        List<Article> articles = new ArrayList<>();
+        for(int i = 0; i < articlesEntities.size(); i++) {
+            articles.add(articlesEntities.get(i).convertToDto(articleRepository));
+        }     
+        return articles;
     }
 
     @Override
@@ -56,8 +61,12 @@ public class ArticleServiceImpl implements IArticleService{
 
     @Override
     public List<Article> findAllArticle() {
-        // TODO Auto-generated method stub
-        return null;
+        List<ArticleEntity> articlesEntities = this.articleRepository.findAllArticles();
+        List<Article> articles = new ArrayList<>();
+        for(int i = 0; i < articlesEntities.size(); i++) {
+            articles.add(articlesEntities.get(i).convertToDto(articleRepository));
+        }     
+        return articles;
     }
 
     ArticleEntity convertToEntity(Article article) {
