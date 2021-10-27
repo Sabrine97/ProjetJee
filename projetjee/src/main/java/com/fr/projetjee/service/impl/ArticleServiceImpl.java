@@ -35,12 +35,12 @@ public class ArticleServiceImpl implements IArticleService{
 
     @Override
     public void removeArticle(int id) {
-        this.articleRepository.removeArticle(id);        
+        this.articleRepository.deleteById(id);        
     }
 
     @Override
     public List<Article> findArticleByName(String name) {
-        List<ArticleEntity> articlesEntities = this.articleRepository.findArticleByName(name);
+        List<ArticleEntity> articlesEntities = this.articleRepository.findArticleByNom(name);
         List<Article> articles = new ArrayList<>();
         for(int i = 0; i < articlesEntities.size(); i++) {
             articles.add(articlesEntities.get(i).convertToDto(articleRepository));
@@ -50,7 +50,7 @@ public class ArticleServiceImpl implements IArticleService{
 
     @Override
     public Article findArticleById(int id) {
-        Optional<ArticleEntity> optionalArticle = this.articleRepository.findArticleById(id);
+        Optional<ArticleEntity> optionalArticle = this.articleRepository.findById(id);
         if (optionalArticle.isPresent()) {
             return optionalArticle.get().convertToDto(articleRepository);
         }
@@ -61,7 +61,7 @@ public class ArticleServiceImpl implements IArticleService{
 
     @Override
     public List<Article> findAllArticle() {
-        List<ArticleEntity> articlesEntities = this.articleRepository.findAllArticles();
+        List<ArticleEntity> articlesEntities = this.articleRepository.findAll();
         List<Article> articles = new ArrayList<>();
         for(int i = 0; i < articlesEntities.size(); i++) {
             articles.add(articlesEntities.get(i).convertToDto(articleRepository));

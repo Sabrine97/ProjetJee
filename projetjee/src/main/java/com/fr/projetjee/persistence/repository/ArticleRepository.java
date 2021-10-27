@@ -9,16 +9,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ArticleRepository extends JpaRepository<ArticleEntity, Integer>{
 
-    public Optional<ArticleEntity> findArticleById(int id);
+    //public Optional<ArticleEntity> findArticleById(int id);
 
-    public List<ArticleEntity> findArticleByName(String name);
+    public List<ArticleEntity> findArticleByNom(String name);
 
-    public List<ArticleEntity> findAllArticles();
+    //public List<ArticleEntity> findAll();
 
-    public ArticleEntity addArticle(ArticleEntity article);
+    //public ArticleEntity save(ArticleEntity article);
 
-    public void removeArticle(int id);
-
-    public ArticleEntity updateArticle(ArticleEntity article, ArticleEntity modifiedArticle);
+    //public void deleteById(int id);
+    // save fais l'update  
+    //public ArticleEntity updateArticle(ArticleEntity article, ArticleEntity modifiedArticle);
     
 }
