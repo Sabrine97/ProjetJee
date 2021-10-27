@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.fr.projetjee.persistence.repository.ArticleRepository;
+import com.fr.projetjee.service.model.Article;
+
 @Entity
 public class ArticleEntity implements Serializable{
     @Id
@@ -49,6 +52,10 @@ public class ArticleEntity implements Serializable{
 
     public void setFabDate(Date fabDate) {
         this.fabDate = fabDate;
+    }
+
+    public Article convertToDto(ArticleRepository articleRepository) {
+        return (Article) articleRepository;
     }
 
 

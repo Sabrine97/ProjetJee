@@ -2,45 +2,51 @@ package com.fr.projetjee.service.model;
 
 import java.util.Date;
 
+import com.fr.projetjee.persistence.repository.ArticleRepository;
+
 public class Article {
-    private int id_article;
+    private int id;
 
-    private String name_article;
+    private String nom;
 
-    private Date date_exp;
+    private Date expDate;
 
-    private Date date_fab; 
+    private Date fabDate; 
 
-    public int getId_article() {
-        return this.id_article;
+    public int getId() {
+        return this.id;
     }
 
-    public void setId_article(int id_article) {
-        this.id_article = id_article;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getName_article() {
-        return this.name_article;
+    public String getNom() {
+        return this.nom;
     }
 
-    public void setName_article(String name_article) {
-        this.name_article = name_article;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public Date getDate_exp() {
-        return this.date_exp;
+    public Date getExpDate() {
+        return this.expDate;
     }
 
-    public void setDate_exp(Date date_exp) {
-        this.date_exp = date_exp;
+    public void setExpDate(Date expDate) {
+        this.expDate = expDate;
     }
 
-    public Date getDate_fab() {
-        return this.date_fab;
+    public Date getFabDate() {
+        return this.fabDate;
     }
 
-    public void setDate_fab(Date date_fab) {
-        this.date_fab = date_fab;
+    public void setFabDate(Date fabDate) {
+        this.fabDate = fabDate;
+    }
+
+    public ArticleRepository map() {
+        return (ArticleRepository) this;
     }
 
 }
