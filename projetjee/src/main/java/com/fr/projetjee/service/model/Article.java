@@ -13,7 +13,7 @@ public class Article {
 
     private Date fabDate; 
 
-    private int prix;
+    private double prix;
 
     private int quantity;
 
@@ -49,11 +49,11 @@ public class Article {
         this.fabDate = fabDate;
     }
 
-    public int getPrix() {
+    public double getPrix() {
         return this.prix;
     }
 
-    public void setPrix(int prix) {
+    public void setPrix(double prix) {
         this.prix = prix;
     }
 
