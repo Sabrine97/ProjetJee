@@ -22,6 +22,26 @@ public class ArticleEntity implements Serializable{
 
     private Date fabDate; 
 
+    private Integer quantity;
+
+    private Integer prix;
+
+    public Integer getPrix() {
+        return this.prix;
+    }
+
+    public void setPrix(Integer prix) {
+        this.prix = prix;
+    }
+
+    public Integer getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public int getId() {
         return this.id;
     }
