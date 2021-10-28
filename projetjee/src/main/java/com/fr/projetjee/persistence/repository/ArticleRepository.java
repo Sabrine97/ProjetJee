@@ -15,6 +15,10 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, Integer>
 
     public List<ArticleEntity> findArticleByNomLike(String search);
 
+    public List<ArticleEntity> findArticleByPrixBetween(double prixMin, double prixMax);
+
+    public List<ArticleEntity> findArticleByQuantityLow(int quantity);
+
     //public List<ArticleEntity> findAll();
 
     //public ArticleEntity save(ArticleEntity article);
