@@ -12,10 +12,16 @@ public interface IArticleService {
 
     public void removeArticle(int id);
 
-    public List<Article> findArticleByName(String name);
-
     public Article findArticleById(int id);
     
     public List<Article> findAllArticle();
+
+    public List<Article> findArticleByNom(String name);
+
+    public List<Article> findArticleByNomLike(String search);
+
+    public List<Article> findArticleByPrixBetween(double prixMin, double prixMax);
+
+    public List<Article> findArticleByQuantityLow(int quantity);
 
 }

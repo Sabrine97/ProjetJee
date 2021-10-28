@@ -39,7 +39,7 @@ public class ArticleServiceImpl implements IArticleService{
     }
 
     @Override
-    public List<Article> findArticleByName(String name) {
+    public List<Article> findArticleByNom(String name) {
         List<ArticleEntity> articlesEntities = this.articleRepository.findArticleByNom(name);
         List<Article> articles = new ArrayList<>();
         for(int i = 0; i < articlesEntities.size(); i++) {
@@ -65,6 +65,37 @@ public class ArticleServiceImpl implements IArticleService{
         List<Article> articles = new ArrayList<>();
         for(int i = 0; i < articlesEntities.size(); i++) {
             articles.add(articlesEntities.get(i).convertToDto(articleRepository));
+        }     
+        return articles;
+    }
+
+    public List<Article> findArticleByNomLike(String search) {
+        List<ArticleEntity> articlesEntities = this.articleRepository.findArticleByNomLike("%" + search + "%");
+        List<Article> articles = new ArrayList<>();
+        for(int i = 0; i < articlesEntities.size(); i++) {
+            articles.add(articlesEntities.get(i).convertToDto(articleRepository));
+        }     
+        return articles;
+    }
+
+    public List<Article> findArticleByPrixBetween(double prixMin, double prixMax) {
+        List<ArticleEntity> articlesEntities = this.articleRepository.findAll();
+        List<Article> articles = new ArrayList<>();
+        for(int i = 0; i < articlesEntities.size(); i++) {
+            if (articlesEntities.get(i).getPrix() <= prixMax && articlesEntities.get(i).getPrix() >= prixMin) {
+                articles.add(articlesEntities.get(i).convertToDto(articleRepository));
+            }
+        }     
+        return articles;
+    }
+
+    public List<Article> findArticleByQuantityLow(int quantity) {
+        List<ArticleEntity> articlesEntities = this.articleRepository.findAll();
+        List<Article> articles = new ArrayList<>();
+        for(int i = 0; i < articlesEntities.size(); i++) {
+            if (articlesEntities.get(i).getQuantity() <= quantity) {
+                articles.add(articlesEntities.get(i).convertToDto(articleRepository));
+            }
         }     
         return articles;
     }
