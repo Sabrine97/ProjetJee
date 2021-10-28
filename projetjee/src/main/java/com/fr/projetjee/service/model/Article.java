@@ -5,13 +5,17 @@ import java.util.Date;
 import com.fr.projetjee.persistence.repository.ArticleRepository;
 
 public class Article {
-    private int id;
 
+    private int id;
     private String nom;
 
     private Date expDate;
 
     private Date fabDate; 
+
+    private int prix;
+
+    private int quantity;
 
     public int getId() {
         return this.id;
@@ -43,6 +47,22 @@ public class Article {
 
     public void setFabDate(Date fabDate) {
         this.fabDate = fabDate;
+    }
+
+    public int getPrix() {
+        return this.prix;
+    }
+
+    public void setPrix(int prix) {
+        this.prix = prix;
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public ArticleRepository map() {
