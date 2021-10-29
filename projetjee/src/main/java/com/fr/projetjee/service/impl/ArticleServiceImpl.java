@@ -29,7 +29,7 @@ public class ArticleServiceImpl implements IArticleService{
 		art.setNom(modifiedArticle.getNom());
 		art.setFabDate(modifiedArticle.getFabDate());
 		art.setExpDate(modifiedArticle.getExpDate());
-        ArticleEntity articleEntity = convertToEntity(article);
+        ArticleEntity articleEntity = convertToEntity(art);
 		this.articleRepository.save(articleEntity);        
     }
 
