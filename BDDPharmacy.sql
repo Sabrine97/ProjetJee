@@ -1,6 +1,17 @@
--- Database: Pharmacy
+-- CREATE THE USER --
 
--- DROP DATABASE "Pharmacy";
+CREATE ROLE "user_pharmacy" WITH
+  LOGIN
+  SUPERUSER
+  INHERIT
+  NOCREATEDB
+  NOCREATEROLE
+  NOREPLICATION
+  PASSWORD 'user';
+
+-- DROP DATABASE "Pharmacy"; (if needed)
+
+-- CREATE THE DATABASE --
 
 CREATE DATABASE "Pharmacy"
     WITH 
@@ -10,6 +21,8 @@ CREATE DATABASE "Pharmacy"
     LC_CTYPE = 'French_France.1252'
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
+
+-- GRANT USAGE PRIVILEGES TO THE USER --
 
 ALTER DEFAULT PRIVILEGES
 GRANT INSERT, SELECT, UPDATE, DELETE ON TABLES TO user_pharmacy;

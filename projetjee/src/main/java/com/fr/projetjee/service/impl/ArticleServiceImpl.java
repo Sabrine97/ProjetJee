@@ -1,9 +1,7 @@
 package com.fr.projetjee.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import com.fr.projetjee.persistence.entities.ArticleEntity;
@@ -19,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.hibernate.cfg.Configuration;
+
 
 @Repository
 @Transactional
@@ -27,17 +27,19 @@ public class ArticleServiceImpl implements IArticleService{
     @Autowired
     private ArticleRepository articleRepository;*/
 
-    @Autowired
-    private SessionFactory sessionFactory;
+   // @Autowired
+    //private SessionFactory sessionFactory;
+
+    Configuration config = new Configuration();
  
     public Stream<Article> getAllArticles() {
-        Session session = null;
+        Session session = config.buildSessionFactory().openSession();;
         Transaction transaction = null;
         Stream<Article> users = null;
         try {
-            session = sessionFactory.openSession();
+            //session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            users = session.createQuery("select u from User u", Article.class).stream();
+            users = session.createQuery("select * from Article", Article.class).stream();
             transaction.commit();
         } catch (Exception e) {
             System.err.println("Exception occurred" + e.getMessage());

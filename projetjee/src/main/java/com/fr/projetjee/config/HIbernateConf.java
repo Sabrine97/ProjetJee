@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  
 @Configuration
 @EnableTransactionManagement
-public class HIbernateConf {
+public class HibernateConf {
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
