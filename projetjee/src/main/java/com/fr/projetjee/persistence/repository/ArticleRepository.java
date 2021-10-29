@@ -4,9 +4,10 @@ import java.util.List;
 
 import com.fr.projetjee.persistence.entities.ArticleEntity;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+//import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ArticleRepository extends JpaRepository<ArticleEntity, Integer>{
+public interface ArticleRepository //extends JpaRepository<ArticleEntity, Integer>
+{
 
     public List<ArticleEntity> findArticleByNom(String name);
 

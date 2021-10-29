@@ -9,7 +9,7 @@
       </property>
 
       <property name = "hibernate.connection.driver_class">
-         com.postgresql.jdbc.Driver // replace postgres
+         com.postgresql.jdbc.Driver
       </property>
 
       <!-- Assume test is the database name -->

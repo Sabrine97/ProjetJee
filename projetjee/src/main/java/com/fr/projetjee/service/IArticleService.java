@@ -6,6 +6,7 @@ import com.fr.projetjee.service.model.Article;
 
 public interface IArticleService {
     
+    /*
     public void addArticle(Article article);
 
     public void updateArticle(Article article, Article modifiedArticle);
@@ -22,6 +23,6 @@ public interface IArticleService {
 
     public List<Article> findArticleByPrixBetween(double prixMin, double prixMax);
 
-    public List<Article> findArticleByQuantityLow(int quantity);
+    public List<Article> findArticleByQuantityLow(int quantity);*/
 
 }

@@ -3,20 +3,54 @@ package com.fr.projetjee.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 import com.fr.projetjee.persistence.entities.ArticleEntity;
 import com.fr.projetjee.persistence.repository.ArticleRepository;
 import com.fr.projetjee.service.IArticleService;
 import com.fr.projetjee.service.model.Article;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-@Service
+ 
+import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+@Repository
+@Transactional
 public class ArticleServiceImpl implements IArticleService{
+/*
+    @Autowired
+    private ArticleRepository articleRepository;*/
 
     @Autowired
-    private ArticleRepository articleRepository;
+    private SessionFactory sessionFactory;
+ 
+    public Stream<Article> getAllArticles() {
+        Session session = null;
+        Transaction transaction = null;
+        Stream<Article> users = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            users = session.createQuery("select u from User u", Article.class).stream();
+            transaction.commit();
+        } catch (Exception e) {
+            System.err.println("Exception occurred" + e.getMessage());
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return users;
+    }
 
+    /*
     @Override
     public void addArticle(Article article) {
         ArticleEntity articleEntity = convertToEntity(article);
@@ -102,6 +136,6 @@ public class ArticleServiceImpl implements IArticleService{
 
     ArticleEntity convertToEntity(Article article) {
         return (ArticleEntity) article.map();
-    }
+    }*/
     
 }
