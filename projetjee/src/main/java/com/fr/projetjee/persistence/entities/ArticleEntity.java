@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import com.fr.projetjee.persistence.repository.ArticleRepository;
 import com.fr.projetjee.service.model.Article;
 
+//test: ceci est une nouvelle branche!
+
 @Entity
 public class ArticleEntity implements Serializable{
     @Id
