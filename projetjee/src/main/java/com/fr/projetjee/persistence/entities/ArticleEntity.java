@@ -3,27 +3,31 @@ package com.fr.projetjee.persistence.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.fr.projetjee.persistence.repository.ArticleRepository;
 import com.fr.projetjee.service.model.Article;
 
+
 @Entity
+@Table(name= "article")
 public class ArticleEntity implements Serializable{
     @Id
     @GeneratedValue
-    private int id;
-
+    private Integer id;
+    @Column(name="nom")
     private String nom;
-
+    @Column(name="exp_date")
     private Date expDate;
-
+    @Column(name="fab_date")
     private Date fabDate; 
-
-    private int quantity;
-
+    @Column(name="quantity")
+    private Integer quantity;
+    @Column(name="prix")
     private double prix;
 
     public double getPrix() {
