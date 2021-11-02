@@ -4,14 +4,14 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd%22%3E">
 
 <hibernate-mapping>
-   <class name = "Article" table = "article">
+   <class name = "com.fr.projetjee.persistence.entities.ArticleEntity" table = "article">
 
       <meta attribute = "class-description">
          This class contains the article detail. 
       </meta>
 
       <id name = "id" type = "int" column = "id">
-         <generator class="native"/>
+         <generator class="identity"/>
       </id>
 
      

@@ -4,14 +4,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import com.fr.projetjee.persistence.entities.ArticleEntity;
-import com.fr.projetjee.persistence.repository.ArticleRepository;
 import com.fr.projetjee.service.IArticleService;
 import com.fr.projetjee.service.model.Article;
 
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
 import org.hibernate.Transaction;
@@ -20,26 +18,21 @@ import org.springframework.transaction.annotation.Transactional;
 import org.hibernate.cfg.Configuration;
 
 
-@Repository
+@Service
 @Transactional
 public class ArticleServiceImpl implements IArticleService{
-/*
-    @Autowired
-    private ArticleRepository articleRepository;*/
-
-   // @Autowired
-    //private SessionFactory sessionFactory;
 
     Configuration config = new Configuration();
+    private static final SessionFactory sf = new Configuration().configure().buildSessionFactory();
  
-    public Stream<Article> getAllArticles() {
-        Session session = config.buildSessionFactory().openSession();;
+    public List<Article> getAllArticles() {
+        
+        Session session = sf.openSession();
         Transaction transaction = null;
-        Stream<Article> users = null;
+        List<Article> users = null;
         try {
-            //session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            users = session.createQuery("select * from Article", Article.class).stream();
+            users = session.createQuery("from Article", Article.class).list();
             transaction.commit();
         } catch (Exception e) {
             System.err.println("Exception occurred" + e.getMessage());
@@ -50,6 +43,95 @@ public class ArticleServiceImpl implements IArticleService{
             session.close();
         }
         return users;
+    }
+
+    public Article getArticle(int id) {
+
+        Session session = sf.openSession();
+        Transaction transaction = null;
+        List<Article> articles = null;
+        try {
+            transaction = session.beginTransaction();
+            Query<Article> query = session.createQuery("from Article where id =:id", Article.class);
+            query.setParameter("id", id);
+            query.executeUpdate();
+            articles = query.list();
+            transaction.commit();
+        } catch (Exception e) {
+            System.err.println("Exception occurred" + e.getMessage());
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return articles.get(0);
+    }
+
+    public boolean deleteArticle(int id) {
+
+        Session session = sf.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query<Article> query = session.createQuery("delete from Article where id =:id", Article.class);
+            query.setParameter("id", id);
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Exception occurred" + e.getMessage());
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    public boolean addArticle(Article article) {
+        Session session = sf.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(article);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Exception occurred" + e.getMessage());
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    public boolean updateArticle(Article article, Article modifiedArticle) {
+        Session session = sf.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query<Article> query =session.createQuery("update Article set nom=:nom, expDate = :expDate, fabDate = :fabDate, prix = :prix, quantity = :quantity where id=:i", Article.class);  
+            query.setParameter("nom", modifiedArticle.getNom()); 
+            query.setParameter("expDate", modifiedArticle.getExpDate());
+            query.setParameter("fabDate", modifiedArticle.getFabDate());
+            query.setParameter("prix", modifiedArticle.getPrix());
+            query.setParameter("quantity", modifiedArticle.getQuantity());
+            query.setParameter("i",article.getId());
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Exception occurred" + e.getMessage());
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            return false;
+        } finally {
+            session.close();
+        }
     }
 
     /*

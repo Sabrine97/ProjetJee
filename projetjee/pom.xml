@@ -15,7 +15,7 @@
 	<name>projetjee</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>8</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<!--<dependency>
@@ -63,12 +63,12 @@
     <version>2.3.5</version>
 </dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
