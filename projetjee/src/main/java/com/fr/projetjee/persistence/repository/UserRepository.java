@@ -1,5 +1,4 @@
 package com.fr.projetjee.persistence.repository;
-import java.util.Optional;
 
 import com.fr.projetjee.persistence.entities.User;
 
