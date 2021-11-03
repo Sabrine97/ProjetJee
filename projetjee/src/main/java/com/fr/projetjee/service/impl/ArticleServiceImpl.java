@@ -59,11 +59,19 @@ public class ArticleServiceImpl implements IArticleService{
     @Override
     public List<Article> findAllArticle() {
         List<ArticleEntity> articlesEntities = this.articleRepository.findAll();
-        List<Article> articles = new ArrayList<>();
-        for(int i = 0; i < articlesEntities.size(); i++) {
-//
-        }     
-        return articles;
+            
+        return null;
+    }
+
+    private Article maptoArticle(ArticleEntity aEntity){ 
+            Article article = new Article();
+            article.setExpDate(aEntity.getExpDate());
+            article.setFabDate(aEntity.getFabDate());
+            article.setId(aEntity.getId());
+            article.setNom(aEntity.getNom());
+            article.setPrix(aEntity.getPrix());
+            article.setQuantity(aEntity.getQuantity());
+            return article;
     }
 
     ArticleEntity convertToEntity(Article article) {
