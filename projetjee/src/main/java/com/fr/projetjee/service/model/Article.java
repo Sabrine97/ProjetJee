@@ -65,8 +65,4 @@ public class Article {
         this.quantity = quantity;
     }
 
-    public ArticleRepository map() {
-        return (ArticleRepository) this;
-    }
-
 }

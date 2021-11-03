@@ -78,9 +78,4 @@ public class ArticleEntity implements Serializable{
         this.fabDate = fabDate;
     }
 
-    public Article convertToDto(ArticleRepository articleRepository) {
-        return (Article) articleRepository;
-    }
-
-
 }

@@ -12,7 +12,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>projetjee</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Projet jee capgemini</description>
 	<properties>
 		<java.version>8</java.version>
 	</properties>
@@ -20,12 +20,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<!-- Hibernate -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.4.3.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -43,20 +43,17 @@ public class ArticleServiceImpl implements IArticleService{
         List<ArticleEntity> articlesEntities = this.articleRepository.findArticleByNom(name);
         List<Article> articles = new ArrayList<>();
         for(int i = 0; i < articlesEntities.size(); i++) {
-            articles.add(articlesEntities.get(i).convertToDto(articleRepository));
+            // a remplir
         }     
         return articles;
     }
 
     @Override
     public Article findArticleById(int id) {
-        Optional<ArticleEntity> optionalArticle = this.articleRepository.findById(id);
-        if (optionalArticle.isPresent()) {
-            return optionalArticle.get().convertToDto(articleRepository);
-        }
-		else {
-            return null;
-        }
+        ArticleEntity optionalArticle = this.articleRepository.findById(id);
+
+        return null;
+
     }
 
     @Override
@@ -64,13 +61,13 @@ public class ArticleServiceImpl implements IArticleService{
         List<ArticleEntity> articlesEntities = this.articleRepository.findAll();
         List<Article> articles = new ArrayList<>();
         for(int i = 0; i < articlesEntities.size(); i++) {
-            articles.add(articlesEntities.get(i).convertToDto(articleRepository));
+//
         }     
         return articles;
     }
 
     ArticleEntity convertToEntity(Article article) {
-        return (ArticleEntity) article.map();
+        return null;
     }
     
 }
