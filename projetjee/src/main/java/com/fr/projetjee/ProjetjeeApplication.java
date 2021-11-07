@@ -7,11 +7,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Properties;
 import javax.sql.DataSource;
+
 import org.hibernate.SessionFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -20,6 +22,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 @SpringBootApplication
 @EnableTransactionManagement
+@ServletComponentScan
 @EnableAutoConfiguration(exclude = { //
   BatchAutoConfiguration.class,
   DataSourceAutoConfiguration.class, //
@@ -58,6 +61,7 @@ public class ProjetjeeApplication{
       "hibernate.dialect",
       env.getProperty("spring.jpa.properties.hibernate.dialect")
     );
+    properties.put("hibernate.hbm2ddl.auto", env.getProperty("spring.jpa.hibernate.ddl-auto"));
     properties.put(
       "hibernate.show_sql",
       env.getProperty("spring.jpa.show-sql")
@@ -91,4 +95,5 @@ public class ProjetjeeApplication{
     );
     return transactionManager;
   }
+  
 }

@@ -1,17 +1,12 @@
 package com.fr.projetjee.persistence.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.fr.projetjee.persistence.repository.ArticleRepository;
-import com.fr.projetjee.service.model.Article;
-
 
 @Entity
 @Table(name= "article")
@@ -20,30 +15,28 @@ public class ArticleEntity implements Serializable{
     @GeneratedValue
     private Integer id;
     @Column(name="nom")
-    private String nom;
-    @Column(name="exp_date")
-    private Date expDate;
-    @Column(name="fab_date")
-    private Date fabDate; 
-    @Column(name="quantity")
-    private Integer quantity;
+    private String nom; 
     @Column(name="prix")
     private double prix;
+    @Column(name="quantity")
+    private int quantite;
+    @Column(name="description")
+    private String description;
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     public double getPrix() {
         return this.prix;
     }
 
     public void setPrix(double prix) {
         this.prix = prix;
-    }
-
-    public int getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public int getId() {
@@ -62,20 +55,13 @@ public class ArticleEntity implements Serializable{
         this.nom = nom;
     }
 
-    public Date getExpDate() {
-        return this.expDate;
+    public int getQuantite() {
+        return this.quantite;
     }
 
-    public void setExpDate(Date expDate) {
-        this.expDate = expDate;
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
     }
 
-    public Date getFabDate() {
-        return this.fabDate;
-    }
-
-    public void setFabDate(Date fabDate) {
-        this.fabDate = fabDate;
-    }
 
 }

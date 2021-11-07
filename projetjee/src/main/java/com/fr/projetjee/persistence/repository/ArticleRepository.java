@@ -34,18 +34,29 @@ public class ArticleRepository {
     session.delete(article);
   }
 
-  public List<ArticleEntity> findArticleByNom(String name) {
-    return null;
+  public List<ArticleEntity> findArticleByNom(String nom) {
+    Session session = this.sessionFactory.getCurrentSession();
+    List<ArticleEntity> articles = session
+      .createQuery(
+        "From ArticleEntity where nom like :nom order by id ASC",
+        ArticleEntity.class
+      )
+      .setParameter("nom", nom)
+      .getResultList();
+
+    return articles;
   }
 
   public ArticleEntity findById(Integer id) {
-    return null;
+    Session session = this.sessionFactory.getCurrentSession();
+    ArticleEntity article = session.get(ArticleEntity.class, id);
+    return article;
   }
 
   public List<ArticleEntity> findAll() {
     Session session = this.sessionFactory.getCurrentSession();
     List<ArticleEntity> articles = session
-      .createQuery("From ArticleEntity")
+      .createQuery("From ArticleEntity order by id ASC")
       .getResultList();
     return articles;
   }

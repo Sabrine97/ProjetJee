@@ -8,7 +8,7 @@ public interface IArticleService {
     
     public void addArticle(Article article);
 
-    public void updateArticle(Article article, Article modifiedArticle);
+    public void updateArticle(int id, Article modifiedArticle);
 
     public void removeArticle(int id);
 
