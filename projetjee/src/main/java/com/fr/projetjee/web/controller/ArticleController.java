@@ -36,10 +36,16 @@ public class ArticleController {
   public ModelAndView showRechercheArticles(@ModelAttribute("articleRecherche") Article articleRecherche) {
     List<Article> articleList = articleService.findAllArticle();
     ModelAndView modelAndView = new ModelAndView("articles");
-     if(!articleRecherche.getNom().equals("")){
-        articleList = articleService.findArticleByName(articleRecherche.getNom());
-      }
-      modelAndView.addObject("articleRecherche", articleRecherche);
+    String name = "";
+
+    if(articleRecherche.getNom() != null){
+      name = articleRecherche.getNom();
+    }
+    
+    if(!name.equals("")){
+      articleList = articleService.findArticleByName(articleRecherche.getNom());
+    }
+    modelAndView.addObject("articleRecherche", articleRecherche);
     modelAndView.addObject("articleList", articleList);
     return modelAndView;
   }

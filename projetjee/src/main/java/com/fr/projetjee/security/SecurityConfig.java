@@ -19,13 +19,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
   private UserService userDetailsService;
-
+/**
+ * 
+ */
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth
       .userDetailsService(userDetailsService);
   }
-
+/**
+ * Configuration Spring sécurity
+ */
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
@@ -47,7 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .ignoring()
       .antMatchers("/resources/", "/static/", "/css/", "/js/", "/images/**");
   }
-
+/**
+ * Bean d'encodage d'un mot de passe
+ * @return
+ */
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();

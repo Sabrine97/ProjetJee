@@ -8,19 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+/**
+ * Classe d'implémentation de la couche service
+ */
 @Service
 public class ArticleServiceImpl implements IArticleService {
-
+/**
+ * Appel à la couche persistence
+ * ArticleRepository
+ */
   @Autowired
   private ArticleRepository articleRepository;
-
+/**
+ * Implémentation du service ajouter un article
+ */
   @Override
   public void addArticle(Article article) {
     ArticleEntity articleEntity = convertToEntity(article);
     this.articleRepository.save(articleEntity);
   }
-
+/**
+ * Implémentation du service modifier un article
+ */
   @Override
   public void updateArticle(int id, Article modifiedArticle) {
     final Article art = this.findArticleById(id);
@@ -31,12 +40,16 @@ public class ArticleServiceImpl implements IArticleService {
     ArticleEntity articleEntity = convertToEntity(modifiedArticle);
     this.articleRepository.update(articleEntity);
   }
-
+/**
+ * Implémentation du service supprimer un article
+ */
   @Override
   public void removeArticle(int id) {
     this.articleRepository.deleteById(id);
   }
-
+/**
+ * Implémentation du service de récuperation de la liste d'article par nom
+ */
   @Override
   public List<Article> findArticleByName(String name) {
     List<ArticleEntity> articlesEntities =
@@ -49,7 +62,7 @@ public class ArticleServiceImpl implements IArticleService {
     return articles;
   }
 /**
- * 
+ * Implémentation du service récupérer la liste des articles par id
  * 
  */
 
@@ -60,7 +73,7 @@ public class ArticleServiceImpl implements IArticleService {
     return article;// je retourne article
   }
 /**
- * 
+ * Implémentation du service recupérer tous les articles
  * 
  */
   @Override
@@ -76,7 +89,7 @@ public class ArticleServiceImpl implements IArticleService {
     return articles;// je retourne ma liste d'article
   }
 /**
- * 
+ * Permet de transformer une articleEntity to article
  * @param aEntity
  * @return
  */
@@ -89,7 +102,11 @@ public class ArticleServiceImpl implements IArticleService {
     article.setDescription(aEntity.getDescription());
     return article;
   }
-
+/**
+ * Permet de transformer un article to articleEntity
+ * @param article
+ * @return
+ */
   ArticleEntity convertToEntity(Article article) {
     ArticleEntity articleEntity = new ArticleEntity();
     articleEntity.setQuantite(article.getQuantite());

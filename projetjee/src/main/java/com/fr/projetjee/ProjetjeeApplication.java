@@ -35,7 +35,10 @@ public class ProjetjeeApplication{
   public static void main(String[] args) {
     SpringApplication.run(ProjetjeeApplication.class, args);
   }
-
+/**
+ * Configuration Hibernate
+ * @return
+ */
   @Bean(name = "dataSource")
   public DataSource getDataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
