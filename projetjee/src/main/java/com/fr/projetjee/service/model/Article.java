@@ -1,46 +1,54 @@
 package com.fr.projetjee.service.model;
 
-import java.util.Date;
 
 public class Article {
-    private int id_article;
 
-    private String name_article;
+    private int id;
+    private String nom;
 
-    private Date date_exp;
+    private double prix;
+    
+    private int quantite;
 
-    private Date date_fab; 
+    private String description;
 
-    public int getId_article() {
-        return this.id_article;
+
+    public int getQuantite() {
+        return this.quantite;
     }
 
-    public void setId_article(int id_article) {
-        this.id_article = id_article;
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public String getDescription() {
+        return this.description;
+    }
+    public int getId() {
+        return this.id;
     }
 
-    public String getName_article() {
-        return this.name_article;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setName_article(String name_article) {
-        this.name_article = name_article;
+    public String getNom() {
+        return this.nom;
     }
 
-    public Date getDate_exp() {
-        return this.date_exp;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public void setDate_exp(Date date_exp) {
-        this.date_exp = date_exp;
+    public double getPrix() {
+        return this.prix;
     }
 
-    public Date getDate_fab() {
-        return this.date_fab;
-    }
-
-    public void setDate_fab(Date date_fab) {
-        this.date_fab = date_fab;
+    public void setPrix(double prix) {
+        this.prix = prix;
     }
 
 }
